@@ -11,8 +11,8 @@ function App() {
     <>
       <NoteState>
         <Router>
+          <Navbar />
           <div className="App">
-            <Navbar />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
