@@ -5,9 +5,64 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  background-image: linear-gradient(
+        -45deg, 
+        rgba(59,173,227,1) 0%, 
+        rgba(87,111,230,1) 25%, 
+        rgba(152,68,183,1) 51%, 
+        rgba(255,53,127,1) 100%
+  );  
+  animation: AnimateBG 20s ease infinite;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+i {
+  cursor: pointer;
+  color: wheat;
+}
+
+@keyframes AnimateBG { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.card {
+  animation: color 15s infinite linear;
+}
+
+@keyframes color {
+  0%   { background: #9327ad; }
+  20%  { background: #33CC36; }
+  40%  { background: #1c65c4; }
+  60%  { background: #615109; }
+  80%  { background: #cc33ab; }
+  100% { background: #33CCCC; }
+}
+
+#txt{
+  color: white;
+}
+
+#edit:hover{
+  background-color: gray;
+}
+
+#edit:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(2px);
+}
+
+#del:hover{
+  background-color: crimson;
+}
+
+#del:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(2px);
 }
