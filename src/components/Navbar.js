@@ -46,7 +46,31 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <form className="form-inline my-2 my-lg-0">
+          <Link
+            className="btn btn-primary my-2 my-sm-0 mx-1"
+            role="button"
+            type="submit"
+            to="/signup"
+          >
+            <i className="fa-solid fa-user-plus"></i> Sign-Up
+          </Link>
+          <Link
+            className="btn btn-success my-2 my-sm-0 mx-2"
+            role="button"
+            type="submit"
+            to="/login"
+          >
+            <i className="fa-solid fa-right-to-bracket"></i> Login
+          </Link>
+          <Link
+            className="btn btn-danger my-2 my-sm-0 mx-1"
+            role="button"
+            type="submit"
+            to="/"
+          >
+            <i className="fa-solid fa-right-from-bracket"></i> Log-Out
+          </Link>
+          <form className="form-inline my-2 my-lg-0 mx-2">
             <input
               className="form-control mr-sm-2"
               type="search"
