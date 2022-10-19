@@ -27,6 +27,7 @@ const NoteItem = (props) => {
             id="del"
             onClick={() => {
               deleteNote(note._id);
+              props.showAlert("Note Deleted", "warning");
             }}
           ></i>
         </div>

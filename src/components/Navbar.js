@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 function Navbar() {
+  let history = useHistory();
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    history.push("/login");
+  };
+
   let location = useLocation();
   useEffect(() => {
     // console.log(location.pathname);
@@ -46,44 +52,30 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <Link
-            className="btn btn-primary my-2 my-sm-0 mx-1"
-            role="button"
-            type="submit"
-            to="/signup"
-          >
-            <i className="fa-solid fa-user-plus"></i> Sign-Up
-          </Link>
-          <Link
-            className="btn btn-success my-2 my-sm-0 mx-2"
-            role="button"
-            type="submit"
-            to="/login"
-          >
-            <i className="fa-solid fa-right-to-bracket"></i> Login
-          </Link>
-          <Link
-            className="btn btn-danger my-2 my-sm-0 mx-1"
-            role="button"
-            type="submit"
-            to="/"
-          >
-            <i className="fa-solid fa-right-from-bracket"></i> Log-Out
-          </Link>
-          <form className="form-inline my-2 my-lg-0 mx-2">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
+          {!localStorage.getItem("token") ? (
+            <form className="d-flex">
+              <Link
+                className="btn btn-primary my-2 my-sm-0 mx-1"
+                role="button"
+                type="submit"
+                to="/signup"
+              >
+                <i className="fa-solid fa-user-plus"></i> Sign-Up
+              </Link>
+              <Link
+                className="btn btn-success my-2 my-sm-0 mx-2"
+                role="button"
+                type="submit"
+                to="/login"
+              >
+                <i className="fa-solid fa-right-to-bracket"></i> Login
+              </Link>
+            </form>
+          ) : (
+            <button className="btn btn-danger mx-1 my-1" onClick={handleLogOut}>
+              <i className="fa-solid fa-right-from-bracket"></i> Log-Out
             </button>
-          </form>
+          )}
         </div>
       </nav>
     </div>

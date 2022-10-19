@@ -1,13 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import NoteContext from "../context/notes/NoteContext";
 import AddNote from "./AddNote";
 import Noteitem from "./Noteitem";
 
-function Notes() {
+function Notes(props) {
+  let history = useHistory();
   const context = useContext(NoteContext);
   const { notes, addNote, getNotes, editNote } = context;
   useEffect(() => {
-    getNotes();
+    if (localStorage.getItem("token")) {
+      getNotes();
+    } else {
+      history.push("/login");
+    }
   }, []);
 
   const ref = useRef(null);
@@ -33,6 +39,7 @@ function Notes() {
   const handleClick = (e) => {
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
+    props.showAlert("Note Updated", "success");
   };
   const handleChange = (e) => {
     setnote({ ...note, [e.target.name]: e.target.value });
@@ -40,7 +47,7 @@ function Notes() {
 
   return (
     <>
-      <AddNote />
+      <AddNote showAlert={props.showAlert} />
 
       {/* Bootstrap Modal */}
 
@@ -159,6 +166,7 @@ function Notes() {
                     key={note._id}
                     updateNote={updateNote}
                     note={note}
+                    showAlert={props.showAlert}
                   />
                 );
               })}
